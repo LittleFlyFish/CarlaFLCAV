@@ -66,7 +66,7 @@ class KittiObjectLabelTool:
             thread_pool.close()
             thread_pool.join()
 
-            if self.output_dir is '':
+            if self.output_dir == '':
                 output_dir = f"{DATASET_PATH}/{self.record_name}/{self.vehicle_name}/kitti_object"
             else:
                 output_dir = f"{DATASET_PATH}/{self.output_dir}/kitti_object"
@@ -76,7 +76,7 @@ class KittiObjectLabelTool:
             start = time.time()
             for index, frame in self.rawdata_df.iterrows():
                 self.process_frame(index, frame)
-            if self.output_dir is '':
+            if self.output_dir == '':
                 output_dir = f"{DATASET_PATH}/{self.record_name}/{self.vehicle_name}/kitti_object"
             else:
                 output_dir = f"{DATASET_PATH}/{self.output_dir}/kitti_object"
@@ -189,7 +189,7 @@ class KittiObjectLabelTool:
         # o3d.visualization.draw_geometries(preview_obj)
 
         # Output dataset in kitti format
-        if self.output_dir is '':
+        if self.output_dir == '':
             output_dir = f"{DATASET_PATH}/{self.record_name}/{self.vehicle_name}/kitti_object/training"
         else:
             output_dir = f"{DATASET_PATH}/{self.output_dir}/kitti_object/training"
