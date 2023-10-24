@@ -23,10 +23,15 @@ def load_lidar_data(path: str):
                                Rotation(yaw=float(row['yaw']),
                                         roll=float(row['roll']),
                                         pitch=float(row['pitch'])))
-        lidar_rawdata_df = lidar_rawdata_df.append({'frame': frame,
-                                                    'lidar_rawdata_path': lidar_rawdata_path,
-                                                    'lidar_pose': lidar_pose},
-                                                   ignore_index=True)
+        new_data = {'frame': frame,'lidar_rawdata_path': lidar_rawdata_path,'lidar_pose': lidar_pose}
+        # replace ... with your other column values
+        new_row = pd.DataFrame(new_data, index=[0])
+        lidar_rawdata_df= pd.concat([lidar_rawdata_df, new_row], ignore_index=True)
+
+        # lidar_rawdata_df = lidar_rawdata_df.append({'frame': frame,
+        #                                             'lidar_rawdata_path': lidar_rawdata_path,
+        #                                             'lidar_pose': lidar_pose},
+        #                                            ignore_index=True)
     return lidar_rawdata_df
 
 
@@ -65,6 +70,7 @@ def load_object_labels(path: str):
     for objects_labels_rawdata_path in object_labels_path_list:
         frame = get_frame_from_fullpath(objects_labels_rawdata_path)
         print(type(object_labels_df))
+
         new_data = {'frame': frame, 'object_labels_path': objects_labels_rawdata_path}
         # replace ... with your other column values
         new_row = pd.DataFrame(new_data, index=[0])
