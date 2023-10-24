@@ -64,10 +64,10 @@ def load_object_labels(path: str):
     object_labels_df = pd.DataFrame(columns=['frame', 'object_labels_path'])
     for objects_labels_rawdata_path in object_labels_path_list:
         frame = get_frame_from_fullpath(objects_labels_rawdata_path)
+        print(type(object_labels_df))
         object_labels_df = object_labels_df.append({'frame': frame,
                                                     'object_labels_path': objects_labels_rawdata_path},
                                                    ignore_index=True)
-        print(type(object_labels_df))
     return object_labels_df
 
 
