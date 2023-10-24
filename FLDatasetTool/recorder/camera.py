@@ -57,18 +57,43 @@ class CameraBase(Sensor):
             camera_info = self.get_camera_info()
             writer.writerow(camera_info)
 
+    # def get_camera_info(self):
+    #     camera_width = int(self.carla_actor.attributes['image_size_x'])
+    #     camera_height = int(self.carla_actor.attributes['image_size_y'])
+    #     fx = camera_width / (
+    #             2.0 * math.tan(float(self.carla_actor.attributes['fov']) * math.pi / 360.0))
+    #     return {
+    #         'width': camera_width,
+    #         'height': camera_height,
+    #         'cx': camera_width / 2.0,
+    #         'cy': camera_height / 2.0,
+    #         'fx': fx,
+    #         'fy': fx
+    #     }
+
     def get_camera_info(self):
-        camera_width = int(self.carla_actor.attributes['image_size_x'])
-        camera_height = int(self.carla_actor.attributes['image_size_y'])
-        fx = camera_width / (
-                2.0 * math.tan(float(self.carla_actor.attributes['fov']) * math.pi / 360.0))
+        # 从相机参数中获取图像的宽度和高度（以像素为单位）
+        camera_width = 1920 # self.camera_parameters['image_resolution_in_px']['width']
+        camera_height = 1080 # self.camera_parameters['image_resolution_in_px']['height']
+
+        # 计算像素尺寸（以毫米为单位）
+        pixel_size_in_mm = 0.0029 # self.camera_parameters['pixel_size_in_mm']
+
+        # 计算焦距（以毫米为单位）
+        focal_length_in_mm = 3.15 # self.camera_parameters['focal_length_in_mm']
+
+        # 使用以下公式将焦距从毫米转换为像素：
+        # Focal length (in pixels) = (Focal length in mm / Pixel size in mm)
+        fx = focal_length_in_mm / pixel_size_in_mm
+        fy = fx  # 假设 x 和 y 方向的焦距是相同的
+
         return {
             'width': camera_width,
             'height': camera_height,
             'cx': camera_width / 2.0,
             'cy': camera_height / 2.0,
             'fx': fx,
-            'fy': fx
+            'fy': fy
         }
 
     def get_transform(self) -> Transform:
