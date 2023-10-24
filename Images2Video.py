@@ -15,7 +15,7 @@ first_image = cv2.imread(os.path.join(folder_path, files[0]))
 height, width, _ = first_image.shape
 
 # Define the output video path and settings
-output_path = '/media/data1/yanran/CarlaFLCAV/FLYolo/raw_data/output_video.mp4'
+output_path = '/media/data1/yanran/CarlaFLCAV/FLDatasetTool/raw_data/output_video.mp4'
 
 fps = 30
 fourcc = cv2.VideoWriter_fourcc(*'mp4v')
