@@ -53,17 +53,17 @@ def load_camera_data(path: str):
                                          roll=float(row['roll']),
                                          pitch=float(row['pitch'])))
 
-        new_data = {'frame': frame,'camera_pose': camera_pose,
-                    'camera_matrix': camera_matrix,'camera_rawdata_path': camera_rawdata_path}
-        # replace ... with your other column values
-        new_row = pd.DataFrame(new_data, index=[0])
-        camera_rawdata_df = pd.concat([camera_rawdata_df, new_row], ignore_index=True)
+        # new_data = {'frame': frame,'camera_pose': camera_pose,
+        #             'camera_matrix': camera_matrix,'camera_rawdata_path': camera_rawdata_path}
+        # # replace ... with your other column values
+        # new_row = pd.DataFrame(new_data, index=[0])
+        # camera_rawdata_df = pd.concat([camera_rawdata_df, new_row], ignore_index=True)
 
-        # camera_rawdata_df = camera_rawdata_df.append({'frame': frame,
-        #                                               'camera_pose': camera_pose,
-        #                                               'camera_matrix': camera_matrix,
-        #                                               'camera_rawdata_path': camera_rawdata_path},
-        #                                              ignore_index=True)
+        camera_rawdata_df = camera_rawdata_df.append({'frame': frame,
+                                                      'camera_pose': camera_pose,
+                                                      'camera_matrix': camera_matrix,
+                                                      'camera_rawdata_path': camera_rawdata_path},
+                                                     ignore_index=True)
     return camera_rawdata_df
 
 
