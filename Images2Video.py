@@ -2,7 +2,7 @@ import cv2
 import os
 
 # Path to the folder containing the images
-folder_path = '/media/data1/yanran/SMOKE/datasets/kitti/image_2'
+folder_path = '/media/data1/yanran/SMOKE/datasets/kitti/training/image_2'
 
 # Get a list of all files in the folder
 files = os.listdir(folder_path)
