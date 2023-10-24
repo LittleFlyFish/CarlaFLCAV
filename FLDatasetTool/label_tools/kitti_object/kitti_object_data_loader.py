@@ -67,6 +67,7 @@ def load_object_labels(path: str):
         object_labels_df = object_labels_df.append({'frame': frame,
                                                     'object_labels_path': objects_labels_rawdata_path},
                                                    ignore_index=True)
+        print(type(object_labels_df))
     return object_labels_df
 
 
