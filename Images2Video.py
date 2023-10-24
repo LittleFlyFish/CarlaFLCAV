@@ -2,7 +2,7 @@ import cv2
 import os
 
 # Path to the folder containing the images
-folder_path = './FLYolo/raw_data/record_2023_1020_2254/vehicle.tesla.model3_13/image_2'
+folder_path = '/media/data1/yanran/CarlaFLCAV/FLYolo/raw_data/record_2023_1020_2254/vehicle.tesla.model3_13/image_2'
 
 # Get a list of all files in the folder
 files = os.listdir(folder_path)
@@ -15,7 +15,7 @@ first_image = cv2.imread(os.path.join(folder_path, files[0]))
 height, width, _ = first_image.shape
 
 # Define the output video path and settings
-output_path = './FLYolo/raw_data/output_video.mp4'
+output_path = '/media/data1/yanran/CarlaFLCAV/FLYolo/raw_data/output_video.mp4'
 
 fps = 30
 fourcc = cv2.VideoWriter_fourcc(*'mp4v')
