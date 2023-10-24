@@ -65,9 +65,14 @@ def load_object_labels(path: str):
     for objects_labels_rawdata_path in object_labels_path_list:
         frame = get_frame_from_fullpath(objects_labels_rawdata_path)
         print(type(object_labels_df))
-        object_labels_df = object_labels_df.append({'frame': frame,
-                                                    'object_labels_path': objects_labels_rawdata_path},
-                                                   ignore_index=True)
+        new_data = {'frame': frame, 'object_labels_path': objects_labels_rawdata_path}
+        # replace ... with your other column values
+        new_row = pd.DataFrame(new_data, index=[0])
+        object_labels_df = pd.concat([object_labels_df, new_row], ignore_index=True)
+
+        # object_labels_df = object_labels_df.append({'frame': frame,
+        #                                             'object_labels_path': objects_labels_rawdata_path},
+        #                                            ignore_index=True)
     return object_labels_df
 
 
