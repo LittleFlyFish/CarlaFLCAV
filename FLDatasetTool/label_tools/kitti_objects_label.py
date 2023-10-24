@@ -20,8 +20,8 @@ def gather_rawdata_to_dataframe(record_name: str, vehicle_name: str, lidar_path:
     # vehicle_poses_df = load_vehicle_pose("{}/{}/{}".format(RAW_DATA_PATH, record_name, vehicle_name))
     # rawdata_frames_df = vehicle_poses_df
 
+    print('The data path is:', RAW_DATA_PATH, record_name)
     object_labels_path_df = load_object_labels("{}/{}/others.world_0".format(RAW_DATA_PATH, record_name))
-    print('The data path is:', object_labels_path_df)
     rawdata_frames_df = object_labels_path_df
     rawdata_frames_df = rawdata_frames_df.reset_index(drop=False)
 
