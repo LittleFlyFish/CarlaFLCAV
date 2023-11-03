@@ -10,12 +10,13 @@ image_files = set(os.listdir(image_dir))
 
 # Remove the file extension for image_files
 image_files_no_ext = {os.path.splitext(file)[0] for file in image_files}
+label_files_no_ext = {os.path.splitext(file)[0] for file in label_files}
 
 # Check for files that exist in label_files but not in image_files
-missing_in_image = label_files - image_files_no_ext
+missing_in_image = label_files_no_ext - image_files_no_ext
 
 # Check for files that exist in image_files but not in label_files
-missing_in_label = image_files_no_ext - label_files
+missing_in_label = image_files_no_ext - label_files_no_ext
 
 # Print out the results
 print(f"Files in label_2 but not in image_2: {missing_in_image}")
