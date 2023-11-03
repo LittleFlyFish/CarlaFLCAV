@@ -2,7 +2,7 @@ import os
 import shutil
 
 # Define source and target directories
-root = '/media/data1/yanran/CarlaFLCAV/FLDatasetTool"
+root = '/media/data1/yanran/CarlaFLCAV/FLDatasetTool'
 src_dir = '/dataset'
 target_dir = '/dataset/TotalTraining'
 
