@@ -1,18 +1,16 @@
 import os
 import shutil
 
-def GenerateCalib(calib_path, root_path, num_files, fillnums):
+def GenerateCalib(calib_path, target_path, num_files, fillnums):
 
     # Loop to generate and copy files
     for i in range(num_files):
         # Generate the new file name
         new_file_name = str(i).zfill(fillnums) + ".txt"
-
         # Path to the new file
-        new_file_path = f"{destination_folder}/{new_file_name}"
-
+        new_file_path = f"{target_path}/{new_file_name}"
         # Copy the source file to the new file path
-        shutil.copy2(source_file, new_file_path)
+        shutil.copy2(calib_path, new_file_path)
 
 # Define source and target directories
 root = '/media/data1/yanran/CarlaFLCAV/FLDatasetTool'
@@ -25,7 +23,7 @@ subdirs = ['image_2', 'label_2']
 # Create target directories if they don't exist
 for subdir in subdirs:
     os.makedirs(os.path.join(target_dir, subdir), exist_ok=True)
-
+os.makedirs(os.path.join(target_dir, 'calib'), exist_ok=True)
 
 # Initialize a counter for PNG files
 total_files = 0
@@ -76,5 +74,5 @@ for record in os.listdir(src_dir):
                                                 shutil.copyfile(file_path, target_file_path)
 
 
-GenerateCalib(target_dir+'calib1382X512.txt', target_dir +'calib', image_counter, total_digits)
+GenerateCalib(root + 'dataset/calib1382X512.txt', target_dir +'calib', image_counter, total_digits)
 
