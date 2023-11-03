@@ -3,8 +3,8 @@ import shutil
 
 # Define source and target directories
 root = '/media/data1/yanran/CarlaFLCAV/FLDatasetTool'
-src_dir = '/dataset'
-target_dir = '/dataset/TotalTraining'
+src_dir = root + '/dataset'
+target_dir = root + '/dataset/TotalTraining'
 
 # Define subdirectories to copy
 subdirs = ['image_2', 'label_2', 'calib']
