@@ -170,8 +170,8 @@ def write_labels(raw_data_path, frame_id, ego_vehicle_label, tmp_bboxes, pointcl
         os.makedirs(dataset_path+'/image0'+str(index))
     if not os.path.exists(dataset_path+'/calib0'+str(index)):
         os.makedirs(dataset_path+'/calib0'+str(index))
-    if not os.path.exists(dataset_path+'/velodyne'):
-        os.makedirs(dataset_path+'/velodyne')
+    # if not os.path.exists(dataset_path+'/velodyne'):
+    #     os.makedirs(dataset_path+'/velodyne')
     
     for _tmp in sensor_raw_path:
         if str(camera_id) in _tmp and 'label' not in _tmp:
@@ -186,12 +186,12 @@ def write_labels(raw_data_path, frame_id, ego_vehicle_label, tmp_bboxes, pointcl
         coordinate_camera = calib.lidar_to_rect(coordinate).flatten()
         tmp_bboxes[idx][11:14] = coordinate_camera
     np.savetxt(dataset_path + '/label0'+str(index)+'/' + frame_id, np.array(tmp_bboxes), fmt='%s', delimiter=' ')
-    pointcloud = np.array(pointcloud.points, dtype=np.dtype('f4'))
-    # pointcloud[:,2] = pointcloud[:,2] * -1
-    # points_r = np.zeros((pointcloud.shape[0],1),dtype=np.dtype('f4'))
-    points_R = np.exp(-0.05*np.sqrt(np.sum(pointcloud**2,axis=1))).reshape(-1,1)
-    pointcloud = np.concatenate((pointcloud,points_R),axis=1)
-    pointcloud.tofile(dataset_path + '/velodyne/' + frame_id[:-3] +'bin')
+    # pointcloud = np.array(pointcloud.points, dtype=np.dtype('f4'))
+    # # pointcloud[:,2] = pointcloud[:,2] * -1
+    # # points_r = np.zeros((pointcloud.shape[0],1),dtype=np.dtype('f4'))
+    # points_R = np.exp(-0.05*np.sqrt(np.sum(pointcloud**2,axis=1))).reshape(-1,1)
+    # pointcloud = np.concatenate((pointcloud,points_R),axis=1)
+    # pointcloud.tofile(dataset_path + '/velodyne/' + frame_id[:-3] +'bin')
     return image_path
 
 def get_matrix(location, rotation):
