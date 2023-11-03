@@ -7,35 +7,31 @@ src_dir = root + '/dataset'
 target_dir = root + '/dataset/TotalTraining'
 
 # Define subdirectories to copy
-subdirs = ['image_2', 'label_2', 'calib']
+subdirs = ['image_2', 'label_2']
 
 # Create target directories if they don't exist
 for subdir in subdirs:
     os.makedirs(os.path.join(target_dir, subdir), exist_ok=True)
 
-# First pass to count total number of files
-total_files = 0
-for subdir in subdirs:
-    for dirpath, dirnames, filenames in os.walk(os.path.join(src_dir, subdir)):
-        total_files += len(filenames)
 
 # Initialize a counter for PNG files
-png_count = 0
+total_files = 0
 # Use os.walk to traverse the directory tree
 for dirpath, dirnames, filenames in os.walk(src_dir):
     # Check each file to see if it ends in '.png'
     for filename in filenames:
         if filename.lower().endswith('.png'):
-            png_count += 1
+            total_files += 1
 
 # Print the count of PNG files
-print(f"There are {png_count} PNG files in {src_dir} and its subdirectories.")
+print(f"There are {total_files} PNG files in {src_dir} and its subdirectories.")
 
 # Calculate total number of digits to maintain in file names
 total_digits = 6 # len(str(total_files))
 
 # Second pass to copy and rename files
-png_file_counter = 0
+image_counter = 0
+label_counter = 0
 for record in os.listdir(src_dir):
     record_path = os.path.join(src_dir, record)
     if os.path.isdir(record_path):
@@ -56,11 +52,14 @@ for record in os.listdir(src_dir):
                                             if os.path.isfile(file_path):
                                                 target_subdir_path = os.path.join(target_dir, subdir)
                                                 base, ext = os.path.splitext(filename)
-                                                target_filename = f"{png_file_counter:0{total_digits}d}{ext}"
+                                                if subdir == 'image_2':
+                                                    image_counter += 1
+                                                    target_filename = f"{image_counter:0{total_digits}d}{ext}"
+                                                if subdir == 'label_2':
+                                                    label_counter += 1
+                                                    target_filename = f"{label_counter:0{total_digits}d}{ext}"
                                                 target_file_path = os.path.join(target_subdir_path, target_filename)
 
                                                 # Copy and rename the file
                                                 shutil.copyfile(file_path, target_file_path)
-                                                if ext == '.png':
-                                                    png_file_counter += 1
                                                 print(target_filename)
