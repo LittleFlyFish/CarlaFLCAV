@@ -32,10 +32,10 @@ for dirpath, dirnames, filenames in os.walk(src_dir):
 print(f"There are {png_count} PNG files in {src_dir} and its subdirectories.")
 
 # Calculate total number of digits to maintain in file names
-total_digits = 7 # len(str(total_files))
+total_digits = 6 # len(str(total_files))
 
 # Second pass to copy and rename files
-file_counter = 0
+png_file_counter = 0
 for record in os.listdir(src_dir):
     record_path = os.path.join(src_dir, record)
     if os.path.isdir(record_path):
@@ -56,9 +56,11 @@ for record in os.listdir(src_dir):
                                             if os.path.isfile(file_path):
                                                 target_subdir_path = os.path.join(target_dir, subdir)
                                                 base, ext = os.path.splitext(filename)
-                                                target_filename = f"{file_counter:0{total_digits}d}{ext}"
+                                                target_filename = f"{png_file_counter:0{total_digits}d}{ext}"
                                                 target_file_path = os.path.join(target_subdir_path, target_filename)
 
                                                 # Copy and rename the file
                                                 shutil.copyfile(file_path, target_file_path)
-                                                file_counter += 1
+                                                if ext == '.png':
+                                                    png_file_counter += 1
+                                                print(target_filename)
