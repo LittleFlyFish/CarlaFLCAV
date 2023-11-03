@@ -18,6 +18,8 @@ for subdir in subdirs:
     for dirpath, dirnames, filenames in os.walk(os.path.join(src_dir, subdir)):
         total_files += len(filenames)
 
+print(total_files)
+
 # Calculate total number of digits to maintain in file names
 total_digits = len(str(total_files))
 
