@@ -19,10 +19,20 @@ for subdir in subdirs:
     for dirpath, dirnames, filenames in os.walk(os.path.join(src_dir, subdir)):
         total_files += len(filenames)
 
-print(total_files)
+# Initialize a counter for PNG files
+png_count = 0
+# Use os.walk to traverse the directory tree
+for dirpath, dirnames, filenames in os.walk(src_dir):
+    # Check each file to see if it ends in '.png'
+    for filename in filenames:
+        if filename.lower().endswith('.png'):
+            png_count += 1
+
+# Print the count of PNG files
+print(f"There are {png_count} PNG files in {src_dir} and its subdirectories.")
 
 # Calculate total number of digits to maintain in file names
-total_digits = len(str(total_files))
+total_digits = 7 # len(str(total_files))
 
 # Second pass to copy and rename files
 file_counter = 0
