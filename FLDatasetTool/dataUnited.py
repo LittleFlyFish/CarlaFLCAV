@@ -71,6 +71,8 @@ for record in os.listdir(src_dir):
                                                     label_counter += 1
                                                 target_file_path = os.path.join(target_subdir_path, target_filename)
                                                 # Copy and rename the file
+                                                print(file_path)
+                                                print(target_file_path)
                                                 shutil.copyfile(file_path, target_file_path)
 
 
