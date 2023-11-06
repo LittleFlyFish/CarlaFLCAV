@@ -58,7 +58,7 @@ for record in os.listdir(src_dir):
                                 for subdir in subdirs:
                                     subdir_path = os.path.join(training_path, subdir)
                                     if os.path.isdir(subdir_path):
-                                        for filename in os.listdir(subdir_path):
+                                        for filename in sorted(os.listdir(subdir_path)):
                                             file_path = os.path.join(subdir_path, filename)
                                             if os.path.isfile(file_path):
                                                 target_subdir_path = os.path.join(target_dir, subdir)
