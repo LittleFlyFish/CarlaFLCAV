@@ -196,7 +196,7 @@ class KittiObjectLabelTool:
         write_calib(output_dir, index, lidar_trans, cam_trans, cam_mat)
         write_label(output_dir, index, kitti_labels)
         write_image(output_dir, index, image)
-        write_pointcloud(output_dir, index, pointcloud_raw)
+        # write_pointcloud(output_dir, index, pointcloud_raw)
 
 
 def main():
