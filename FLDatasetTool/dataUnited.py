@@ -76,5 +76,5 @@ for record in os.listdir(src_dir):
                                                 shutil.copyfile(file_path, target_file_path)
 
 
-# GenerateCalib(root + '/dataset/calib1382X512.txt', target_dir +'/calib', image_counter, total_digits)
+GenerateCalib(root + '/dataset/calib1382X512.txt', target_dir +'/calib', image_counter, total_digits)
 
