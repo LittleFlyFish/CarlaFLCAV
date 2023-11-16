@@ -104,7 +104,7 @@ target_dir = root + '/dataset/TotalTraining'
 
 # Define subdirectories to copy
 subdirs = ['image_2', 'label_2']
-GenerateTotalTraining(root, src_dir, target_dir, subdirs)
+# GenerateTotalTraining(root, src_dir, target_dir, subdirs)
 
 
 
