@@ -2,7 +2,8 @@ import os
 from PIL import Image
 
 # Specify the directory where the images are located
-image_directory = '/media/data2/ML/Data/nuScences/samples/CAM_FRONT'
+image_directory = '/media/data2/ML/Data/nuScences_convert_kitti/train/image_2'
+# '/media/data2/ML/Data/nuScences/samples/CAM_FRONT'
 #'/media/data1/yanran/kitti/training_nuScences/image_2'
 
 # Get a list of all files in the directory
