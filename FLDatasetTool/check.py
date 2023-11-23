@@ -1,23 +1,20 @@
 import os
+from PIL import Image
 
-# Replace with your actual directories
-label_dir = "/media/data1/yanran/kitti/training/label_2"
-image_dir = "/media/data1/yanran/kitti/training/image_2"
+# Specify the directory where the images are located
+image_directory = '/media/data1/yanran/kitti/training_nuScences/image_2'
 
-# Get list of all files in both directories
-label_files = set(os.listdir(label_dir))
-image_files = set(os.listdir(image_dir))
+# Get a list of all files in the directory
+image_files = os.listdir(image_directory)
 
-# Remove the file extension for image_files
-image_files_no_ext = {os.path.splitext(file)[0] for file in image_files}
-label_files_no_ext = {os.path.splitext(file)[0] for file in label_files}
-
-# Check for files that exist in label_files but not in image_files
-missing_in_image = label_files_no_ext - image_files_no_ext
-
-# Check for files that exist in image_files but not in label_files
-missing_in_label = image_files_no_ext - label_files_no_ext
-
-# Print out the results
-print(f"Files in label_2 but not in image_2: {missing_in_image}")
-print(f"Files in image_2 but not in label_2: {missing_in_label}")
+# Loop through each file
+for filename in image_files:
+    # Ensure file is a .png before trying to open
+    if filename.endswith('.png'):
+        try:
+            # Try to open the image file and call load() to ensure all data is read
+            img = Image.open(os.path.join(image_directory, filename))
+            img.load()
+        except Exception as e:
+            # If anything goes wrong, print the name of the file
+            print(f"File {filename} could not be opened: {e}")
