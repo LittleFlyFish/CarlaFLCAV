@@ -12,7 +12,7 @@ image_files = os.listdir(image_directory)
 # Loop through each file
 for filename in image_files:
     # Ensure file is a .png before trying to open
-    if filename.endswith('.jpg'):
+    if filename.endswith('.png'):
         try:
             # Try to open the image file and call load() to ensure all data is read
             img = Image.open(os.path.join(image_directory, filename))
