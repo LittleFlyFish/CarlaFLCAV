@@ -112,9 +112,9 @@ subdirs = ['image_2', 'label_2']
 # combine the training dataset of 60k and KITTI
 # Example usage:
 root = '/media/data1/yanran/kitti/'
-src_dir1 = 'training_KITTI'
-src_dir2 = 'training_Carla60k'
-target_dir = 'training_KITTICarla60k'
+src_dir1 = 'training'
+src_dir2 = 'training_nuScences'
+target_dir = 'training_KITTICarla60knuScences'
 subdirs = ['image_2', 'label_2', 'calib']
 GenerateCarlaKITTI(root, src_dir1, src_dir2, target_dir, subdirs)
 
