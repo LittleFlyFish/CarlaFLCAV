@@ -75,7 +75,7 @@ import os
 import shutil
 import glob
 
-def GenerateCarlaKITTI(root, src_dir1, src_dir2, target_dir, subdirs):
+def GenerateFuseTwo(root, src_dir1, src_dir2, target_dir, subdirs):
     # Create target directories if they don't exist
     for subdir in subdirs:
         os.makedirs(os.path.join(root, target_dir, subdir), exist_ok=True)
@@ -111,11 +111,11 @@ subdirs = ['image_2', 'label_2']
 ##################################################################################
 # combine the training dataset of 60k and KITTI
 # Example usage:
-root = '/media/data1/yanran/kitti/'
-src_dir1 = 'training'
+root = '/media/data1/yanran/largedata/yanran/dataset'
+src_dir1 = 'training_KITTICarla60k'
 src_dir2 = 'training_nuScences'
 target_dir = 'training_KITTICarla60knuScences'
 subdirs = ['image_2', 'label_2', 'calib']
-GenerateCarlaKITTI(root, src_dir1, src_dir2, target_dir, subdirs)
+GenerateFuseTwo(root, src_dir1, src_dir2, target_dir, subdirs)
 
 
