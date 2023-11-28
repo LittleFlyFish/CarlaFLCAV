@@ -34,7 +34,6 @@ class ActorTree(object):
 
     def tick_data_saving(self, frame_id, timestamp: float):
         thread_pool = ThreadPool()
-        print('The node list are:', self.node_list)
         frame_id_list = [frame_id for i in range(len(self.node_list))]
         timestamp_list = [timestamp for i in range(len(self.node_list))]
         thread_pool.starmap_async(self.save_data, zip(frame_id_list, timestamp_list, self.node_list))
