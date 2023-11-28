@@ -106,8 +106,8 @@ class KittiObjectLabelTool:
         bbox_list_3d = []
         bbox_list_2d = []
         kitti_labels = []
-        print('The objects_labels are:', objects_labels)
         for label in objects_labels:
+            print('The label type should be:', label.label_type)
             # Kitti Object - Type
             if label.label_type == 'vehicle':
                 label_type = 'Car'
