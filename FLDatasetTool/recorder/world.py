@@ -25,6 +25,7 @@ class WorldActor(PseudoActor):
 
         carla_actors = self.carla_world.get_actors()
         for carla_actor in carla_actors:
+            print(f'Actor ID: {carla_actor.id}, Type: {carla_actor.type_id}')
             if carla_actor.type_id.startswith('vehicle') \
                     or carla_actor.type_id.startswith('walker'):
                 transform = carla_transform_to_transform(carla_actor.get_transform())
