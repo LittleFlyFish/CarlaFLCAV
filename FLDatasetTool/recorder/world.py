@@ -25,13 +25,21 @@ class WorldActor(PseudoActor):
 
         carla_actors = self.carla_world.get_actors()
         for carla_actor in carla_actors:
-            print(f'Actor ID: {carla_actor.id}, Type: {carla_actor.type_id}')
+            if ('bike' in carla_actor.type_id) or ('walker' in carla_actor.type_id) or ('pedestrain' in carla_actor.type_id):
+                print(f'Actor ID: {carla_actor.id}, Type: {carla_actor.type_id}')
             if carla_actor.type_id.startswith('vehicle') \
-                    or carla_actor.type_id.startswith('walker'):
+                    or carla_actor.type_id.startswith('walker')\
+                    or carla_actor.type_id.startswith('traffic.speed_limit'):
                 transform = carla_transform_to_transform(carla_actor.get_transform())
                 bbox = carla_bbox_to_bbox(carla_actor.bounding_box)
                 if carla_actor.type_id.startswith('walker'):
                     label_type = 'pedestrian'
+                elif 'bike' in carla_actor.type_id:
+                    label_type = 'Cyclist'
+                elif carla_actor.type_id == 'traffic.speed_limit.30':
+                    label_type = 'SpeedSign30'
+                elif carla_actor.type_id == 'traffic.speed_limit.60':
+                    label_type = 'SpeedSign60'
                 else:
                     label_type = 'vehicle'
                 object_labels.append(ObjectLabel(frame=frame_id,
