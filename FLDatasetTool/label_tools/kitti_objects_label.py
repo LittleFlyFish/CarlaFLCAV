@@ -110,6 +110,12 @@ class KittiObjectLabelTool:
             # Kitti Object - Type
             if label.label_type == 'vehicle':
                 label_type = 'Car'
+            elif label.label_type == 'SpeedSign30':
+                label_type = 'SpeedSign30'
+            elif label.label_type == 'SpeedSign60':
+                label_type = 'SpeedSign60'
+            elif label.label_type == 'Cyclist':
+                label_type = 'Cyclist'
             elif label.label_type:
                 print('the label_type is:', label.label_type)
                 label_type = 'Pedestrian'
